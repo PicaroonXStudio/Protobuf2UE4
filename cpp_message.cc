@@ -330,9 +330,10 @@ void UEMessageGenerator::FromPBMessage_Normal(io::Printer* printer, const FieldD
 
 	case FieldDescriptor::CPPTYPE_STRING:
 		printer->Print(
-			"$field_name$ = FString(pbMessage.$lowercase_name$().c_str());\n"
+			"$field_name$ = $field_type$(pbMessage.$lowercase_name$().c_str());\n"
 			, "field_name", FieldName(field)
-			, "lowercase_name", field->lowercase_name());
+			, "lowercase_name", field->lowercase_name()
+			, "field_type", PrimitiveTypeName(field->cpp_type()));
 		break;
 	case FieldDescriptor::CPPTYPE_INT32:
 	case FieldDescriptor::CPPTYPE_BOOL:
@@ -348,40 +349,42 @@ void UEMessageGenerator::FromPBMessage_Normal(io::Printer* printer, const FieldD
 
 void UEMessageGenerator::FromPBMessage_Repeated(io::Printer* printer, const FieldDescriptor *field)
 {
+	printer->Print(
+		"for (auto element : pbMessage.$lowercase_name$()) {\n"
+		, "lowercase_name", field->lowercase_name());
+
+
 	switch (field->cpp_type())
 	{
 	case FieldDescriptor::CPPTYPE_MESSAGE:
 		printer->Print(
-			"for (auto element : pbMessage.$lowercase_name$()) {\n"
-			"F$field_type$ _F$field_type$;\n"
-			"_F$field_type$.From(element);\n"
-			"$field_name$.Add(_F$field_type$);\n"
-			"}\n"
+			"F$field_type$ _$field_type$;\n"
+			"_$field_type$.From(element);\n"
+			"$field_name$.Add(_$field_type$);\n"
 			, "field_name", FieldName(field)
 			, "field_type", ClassName(field->message_type(), false)
 			, "lowercase_name", field->lowercase_name());
 		break;
 	case FieldDescriptor::CPPTYPE_STRING:
 		printer->Print(
-			"for (auto element : pbMessage.$lowercase_name$()) {\n"
-			"FString _FString = FString(element.c_str());\n"
-			"$field_name$.Add(_FString);\n"
-			"}\n"
+			"$field_type$ _$field_type$ = $field_type$(element.c_str());\n"
+			"$field_name$.Add(_$field_type$);\n"
 			, "field_name", FieldName(field)
-			, "lowercase_name", field->lowercase_name());
+			, "lowercase_name", field->lowercase_name()
+			,"field_type", PrimitiveTypeName(field->cpp_type()));
 		break;
 	case FieldDescriptor::CPPTYPE_INT32:
 	case FieldDescriptor::CPPTYPE_BOOL:
 		printer->Print(
-			"for (auto element : pbMessage.$lowercase_name$()) {\n"
 			"$field_name$.Add(element);\n"
-			"}\n"
 			, "field_name", FieldName(field)
 			, "lowercase_name", field->lowercase_name());
 		break;
 	default:
 		break;
 	}
+
+	printer->Print("}\n");
 }
 
 void UEMessageGenerator::FromPBMessage_Map(io::Printer * printer, const FieldDescriptor * field)
@@ -418,9 +421,10 @@ void UEMessageGenerator::FromPBMessage_MapPair(io::Printer* printer, const Field
 		break;
 	case FieldDescriptor::CPPTYPE_STRING:
 		printer->Print(
-			"FString $field_name$(element.$field_part$.c_str());\n"
+			"$field_type$ $field_name$(element.$field_part$.c_str());\n"
 			, "field_name", FieldName(field),
-			"field_part", part);
+			"field_part", part
+			, "field_type", PrimitiveTypeName(field->cpp_type()));
 		break;
 	case FieldDescriptor::CPPTYPE_INT32:
 		printer->Print(
