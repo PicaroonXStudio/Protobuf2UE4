@@ -128,8 +128,7 @@ void MyFileGenerator::GenerateSource(io::Printer* printer) {
     "\n"
     "#include $left$$header$$right$\n"
     "\n"
-    "#include \"GameProtocol.h\"\n"
-	"#include \"Game/GameProtocolEnums.h\"\n\n",
+	"#include \"GeneratedEnums.h\"\n\n",
     "filename", file_->name(),
     "header", header,
     "left", use_system_include ? "<" : "\"",
@@ -649,7 +648,7 @@ void MyFileGenerator::GenerateTopHeaderGuard(io::Printer* printer,
       "// source: $filename$\n"
       "\n"
       "#pragma once\n"
-	  "#include \"PBHeaders.h\"\n"
+	  "#include \"headers.pb.h\"\n"
 	  "#include \"DolphinProtocol.h\"\n"
 	  "#include \"$filename_identifier$\"\n\n"
 	  "using namespace Dolphin::Protocol;\n\n",

@@ -122,8 +122,8 @@ void UEMessageGenerator::GenerateClassDefinition(io::Printer* printer) {
 		printer->Print(" public:\n");
 		printer->Indent();
 
-		printer->Print(vars, "void From($classname$& pbMessage);\n");
-		printer->Print(vars, "void To($classname$& pbMessage);\n");
+		printer->Print(vars, "void FromPB(const $classname$& pbMessage);\n");
+		printer->Print(vars, "void ToPB($classname$& pbMessage) const;\n");
 	}
 	else
 	{
@@ -179,7 +179,7 @@ void UEMessageGenerator::ToPBMessage_Normal(io::Printer* printer, const FieldDes
 	case FieldDescriptor::CPPTYPE_MESSAGE:
 		printer->Print(
 			"$field_type$ element;\n"
-			"$field_name$.To(element);\n"
+			"$field_name$.ToPB(element);\n"
 			"pbMessage.set_allocated_$lowercase_name$(&element);\n"
 			, "field_name", FieldName(field)
 			, "field_type", ClassName(field->message_type(), false)
@@ -211,7 +211,7 @@ void UEMessageGenerator::ToPBMessage_Repeated(io::Printer* printer, const FieldD
 		printer->Print(
 			"for (auto element : $field_name$) {\n"
 			"$field_type$ *_$field_type$ = pbMessage.add_$lowercase_name$();\n"
-			"element.To(*_$field_type$);\n"
+			"element.ToPB(*_$field_type$);\n"
 			"}\n"
 			, "field_name", FieldName(field)
 			, "field_type", ClassName(field->message_type(), false)
@@ -267,7 +267,7 @@ void UEMessageGenerator::ToPBMessage_MapPair(io::Printer* printer, const FieldDe
 	case FieldDescriptor::CPPTYPE_MESSAGE:
 		printer->Print(
 			"$field_type$ $field_name$;\n"
-			"element.$field_part$.To($field_name$);\n"
+			"element.$field_part$.ToPB($field_name$);\n"
 			, "field_name", FieldName(field)
 			, "field_part", part
 			, "field_type", ClassName(field->message_type(), false));
@@ -320,7 +320,7 @@ void UEMessageGenerator::FromPBMessage_Normal(io::Printer* printer, const FieldD
 		printer->Print(
 			"if (pbMessage.has_$lowercase_name$()) {\n"
 			"Dolphin::Protocol::$field_type$ data = pbMessage.$lowercase_name$();\n"
-			"	$field_name$.From(data);\n"
+			"	$field_name$.FromPB(data);\n"
 			"}\n"
 			, "field_name", FieldName(field)
 			, "field_type", ClassName(field->message_type(), false)
@@ -359,7 +359,7 @@ void UEMessageGenerator::FromPBMessage_Repeated(io::Printer* printer, const Fiel
 	case FieldDescriptor::CPPTYPE_MESSAGE:
 		printer->Print(
 			"F$field_type$ _$field_type$;\n"
-			"_$field_type$.From(element);\n"
+			"_$field_type$.FromPB(element);\n"
 			"$field_name$.Add(_$field_type$);\n"
 			, "field_name", FieldName(field)
 			, "field_type", ClassName(field->message_type(), false)
@@ -414,7 +414,7 @@ void UEMessageGenerator::FromPBMessage_MapPair(io::Printer* printer, const Field
 	case FieldDescriptor::CPPTYPE_MESSAGE:
 		printer->Print(
 			"F$field_type$ $field_name$;\n"
-			"$field_name$.From(element.$field_part$);\n"
+			"$field_name$.FromPB(element.$field_part$);\n"
 			, "field_name", FieldName(field)
 			, "field_part", part
 			, "field_type", ClassName(field->message_type(), false));
@@ -473,7 +473,7 @@ void UEMessageGenerator::GenerateClassMethods(io::Printer* printer) {
 	if (ends_with(classname_, "Data"))
 	{
 		printer->Print(
-			"void F$classname$::From($classname$& pbMessage) {\n",
+			"void F$classname$::FromPB(const $classname$& pbMessage) {\n",
 			"classname", classname_);
 
 		FromPBMessage(printer);
@@ -481,7 +481,7 @@ void UEMessageGenerator::GenerateClassMethods(io::Printer* printer) {
 		printer->Print("}\n\n");
 
 		printer->Print(
-			"void F$classname$::To($classname$& pbMessage) {\n",
+			"void F$classname$::ToPB($classname$& pbMessage) const {\n",
 			"classname", classname_);
 
 		ToPBMessage(printer);
