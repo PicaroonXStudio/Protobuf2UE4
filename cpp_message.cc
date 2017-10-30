@@ -95,12 +95,6 @@ UEMessageGenerator::UEMessageGenerator(const Descriptor* descriptor, const Optio
 
 UEMessageGenerator::~UEMessageGenerator() {}
 
-inline bool ends_with(std::string const & value, std::string const & ending)
-{
-	if (ending.size() > value.size()) return false;
-	return std::equal(ending.rbegin(), ending.rend(), value.rbegin());
-}
-
 void UEMessageGenerator::GenerateClassDefinition(io::Printer* printer) {
 	if (IsMapEntryMessage(descriptor_)) return;
 
@@ -371,7 +365,7 @@ void UEMessageGenerator::FromPBMessage_Repeated(io::Printer* printer, const Fiel
 			"$field_name$.Add(_$field_type$);\n"
 			, "field_name", FieldName(field)
 			, "lowercase_name", field->lowercase_name()
-			,"field_type", PrimitiveTypeName(field->cpp_type()));
+			, "field_type", PrimitiveTypeName(field->cpp_type()));
 		break;
 	case FieldDescriptor::CPPTYPE_INT32:
 	case FieldDescriptor::CPPTYPE_BOOL:
@@ -490,12 +484,31 @@ void UEMessageGenerator::GenerateClassMethods(io::Printer* printer) {
 	}
 	else if (ends_with(classname_, "Request"))
 	{
+		//TODO 动态加载 模块和方法
+		string className = classname_;
+		className.replace(className.end() - 7, className.end(), "");
+
+		string module;
+		string protocol;
+
+		const vector<string> words = split(className, "_");
+
+		if (words.size() != 2)
+		{
+			return;
+		}
+
+		module = words.at(0);
+		protocol = words.at(1);
+
 		printer->Print(
 			"void U$classname$::Pack() {\n"
-			"mProtocolModule = (uint8)EProtocolModule::User;\n"
-			"mSpecificProtocol = (uint8)EUserProtocol::Login;\n"
+			"mProtocolModule = (uint8)EProtocolModule::$module$;\n"
+			"mSpecificProtocol = (uint8)EUserProtocol::$protocol$;\n"
 			"Dolphin::Protocol::$classname$ pbMessage;\n",
-			"classname", classname_
+			"classname", classname_,
+			"module", module,
+			"protocol", protocol
 		);
 
 		ToPBMessage(printer);

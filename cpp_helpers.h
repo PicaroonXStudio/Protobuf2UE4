@@ -56,6 +56,20 @@ namespace cpp {
 extern const char kThickSeparator[];
 extern const char kThinSeparator[];
 
+inline bool ends_with(std::string const & value, std::string const & ending)
+{
+	if (ending.size() > value.size()) return false;
+	return std::equal(ending.rbegin(), ending.rend(), value.rbegin());
+}
+
+inline bool starts_with(std::string const & value, std::string const & starting)
+{
+	if (starting.size() > value.size()) return false;
+	return std::equal(starting.begin(), starting.end(), value.begin());
+}
+
+vector<string> split(const string& s, const string& delim, const bool keep_empty = true);
+
 // Returns the non-nested type name for the given type.  If "qualified" is
 // true, prefix the type with the full namespace.  For example, if you had:
 //   package foo.bar;
