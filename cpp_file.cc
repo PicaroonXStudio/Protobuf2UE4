@@ -65,7 +65,7 @@ void CollectMacroNames(const FileDescriptor* file, std::vector<string>* names) {
 
 // ===================================================================
 
-MyFileGenerator::MyFileGenerator(const FileDescriptor* file, const Options& options)
+UEFileGenerator::UEFileGenerator(const FileDescriptor* file, const Options& options)
 	: file_(file),
 	options_(options),
 	scc_analyzer_(options),
@@ -90,9 +90,9 @@ MyFileGenerator::MyFileGenerator(const FileDescriptor* file, const Options& opti
 	}
 }
 
-MyFileGenerator::~MyFileGenerator() {}
+UEFileGenerator::~UEFileGenerator() {}
 
-void MyFileGenerator::GenerateMacroUndefs(io::Printer* printer) {
+void UEFileGenerator::GenerateMacroUndefs(io::Printer* printer) {
   std::vector<string> names_to_undef;
   CollectMacroNames(file_, &names_to_undef);
   for (int i = 0; i < names_to_undef.size(); ++i) {
@@ -104,7 +104,7 @@ void MyFileGenerator::GenerateMacroUndefs(io::Printer* printer) {
   }
 }
 
-void MyFileGenerator::GenerateHeader(io::Printer* printer,
+void UEFileGenerator::GenerateHeader(io::Printer* printer,
                                      const string& info_path) {
   string header =
 	  MyStripProto(file_->name()) + (options_.proto_h ? ".proto.h" : "_UE.generated.h");
@@ -118,7 +118,7 @@ void MyFileGenerator::GenerateHeader(io::Printer* printer,
   GenerateMessageDefinitions(printer);
 }
 
-void MyFileGenerator::GenerateSource(io::Printer* printer) {
+void UEFileGenerator::GenerateSource(io::Printer* printer) {
   const bool use_system_include = IsWellKnownMessage(file_);
   string header =
       MyStripProto(file_->name()) + (options_.proto_h ? ".proto.h" : "_UE.h");
@@ -161,7 +161,7 @@ void MyFileGenerator::GenerateSource(io::Printer* printer) {
   //}
 }
 
-class MyFileGenerator::ForwardDeclarations {
+class UEFileGenerator::ForwardDeclarations {
  public:
   ~ForwardDeclarations() {
     for (std::map<string, ForwardDeclarations*>::iterator
@@ -230,7 +230,7 @@ class MyFileGenerator::ForwardDeclarations {
   std::map<string, const EnumDescriptor*> enums_;
 };
 
-void MyFileGenerator::GenerateBuildDescriptors(io::Printer* printer) {
+void UEFileGenerator::GenerateBuildDescriptors(io::Printer* printer) {
   printer->Print("PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTableField\n"
                  "    const TableStruct::entries[] "
                  "GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {\n");
@@ -601,7 +601,7 @@ void MyFileGenerator::GenerateBuildDescriptors(io::Printer* printer) {
   //}
 }
 
-void MyFileGenerator::GenerateNamespaceOpeners(io::Printer* printer) {
+void UEFileGenerator::GenerateNamespaceOpeners(io::Printer* printer) {
   if (package_parts_.size() > 0) printer->Print("\n");
 
   for (int i = 0; i < package_parts_.size(); i++) {
@@ -610,7 +610,7 @@ void MyFileGenerator::GenerateNamespaceOpeners(io::Printer* printer) {
   }
 }
 
-void MyFileGenerator::GenerateNamespaceClosers(io::Printer* printer) {
+void UEFileGenerator::GenerateNamespaceClosers(io::Printer* printer) {
   if (package_parts_.size() > 0) printer->Print("\n");
 
   for (int i = package_parts_.size() - 1; i >= 0; i--) {
@@ -619,13 +619,13 @@ void MyFileGenerator::GenerateNamespaceClosers(io::Printer* printer) {
   }
 }
 
-void MyFileGenerator::GenerateForwardDeclarations(io::Printer* printer) {
+void UEFileGenerator::GenerateForwardDeclarations(io::Printer* printer) {
   ForwardDeclarations decls;
   FillForwardDeclarations(&decls);
   decls.Print(printer, options_);
 }
 
-void MyFileGenerator::FillForwardDeclarations(ForwardDeclarations* decls) {
+void UEFileGenerator::FillForwardDeclarations(ForwardDeclarations* decls) {
   for (int i = 0; i < package_parts_.size(); i++) {
     decls = decls->AddOrGetNamespace(package_parts_[i]);
   }
@@ -640,7 +640,7 @@ void MyFileGenerator::FillForwardDeclarations(ForwardDeclarations* decls) {
   //}
 }
 
-void MyFileGenerator::GenerateTopHeaderGuard(io::Printer* printer,
+void UEFileGenerator::GenerateTopHeaderGuard(io::Printer* printer,
                                            const string& filename_identifier) {
   // Generate top of header.
   printer->Print(
@@ -657,14 +657,14 @@ void MyFileGenerator::GenerateTopHeaderGuard(io::Printer* printer,
   printer->Print("\n");
 }
 
-void MyFileGenerator::GenerateBottomHeaderGuard(
+void UEFileGenerator::GenerateBottomHeaderGuard(
     io::Printer* printer, const string& filename_identifier) {
 }
 
-void MyFileGenerator::GenerateLibraryIncludes(io::Printer* printer) {
+void UEFileGenerator::GenerateLibraryIncludes(io::Printer* printer) {
 }
 
-void MyFileGenerator::GenerateMetadataPragma(io::Printer* printer,
+void UEFileGenerator::GenerateMetadataPragma(io::Printer* printer,
                                            const string& info_path) {
   if (!info_path.empty() && !options_.annotation_pragma_name.empty() &&
       !options_.annotation_guard_name.empty()) {
@@ -677,7 +677,7 @@ void MyFileGenerator::GenerateMetadataPragma(io::Printer* printer,
   }
 }
 
-void MyFileGenerator::GenerateDependencyIncludes(io::Printer* printer) {
+void UEFileGenerator::GenerateDependencyIncludes(io::Printer* printer) {
   std::set<string> public_import_names;
   for (int i = 0; i < file_->public_dependency_count(); i++) {
     public_import_names.insert(file_->public_dependency(i)->name());
@@ -698,11 +698,11 @@ void MyFileGenerator::GenerateDependencyIncludes(io::Printer* printer) {
   }
 }
 
-void MyFileGenerator::GenerateGlobalStateFunctionDeclarations(
+void UEFileGenerator::GenerateGlobalStateFunctionDeclarations(
     io::Printer* printer) {
 }
 
-void MyFileGenerator::GenerateMessageDefinitions(io::Printer* printer) {
+void UEFileGenerator::GenerateMessageDefinitions(io::Printer* printer) {
   // Generate class definitions.
   for (int i = 0; i < message_generators_.size(); i++) {
     if (i > 0) {
@@ -714,14 +714,14 @@ void MyFileGenerator::GenerateMessageDefinitions(io::Printer* printer) {
   }
 }
 
-void MyFileGenerator::GenerateEnumDefinitions(io::Printer* printer) {
+void UEFileGenerator::GenerateEnumDefinitions(io::Printer* printer) {
   // Generate enum definitions.
   for (int i = 0; i < enum_generators_.size(); i++) {
     enum_generators_[i]->GenerateDefinition(printer);
   }
 }
 
-void MyFileGenerator::GenerateServiceDefinitions(io::Printer* printer) {
+void UEFileGenerator::GenerateServiceDefinitions(io::Printer* printer) {
   if (HasGenericServices(file_, options_)) {
     // Generate service definitions.
     //for (int i = 0; i < service_generators_.size(); i++) {
@@ -739,7 +739,7 @@ void MyFileGenerator::GenerateServiceDefinitions(io::Printer* printer) {
   }
 }
 
-void MyFileGenerator::GenerateExtensionIdentifiers(io::Printer* printer) {
+void UEFileGenerator::GenerateExtensionIdentifiers(io::Printer* printer) {
   // Declare extension identifiers. These are in global scope and so only
   // the global scope extensions.
   for (int i = 0; i < file_->extension_count(); i++) {
@@ -747,7 +747,7 @@ void MyFileGenerator::GenerateExtensionIdentifiers(io::Printer* printer) {
   }
 }
 
-void MyFileGenerator::GenerateInlineFunctionDefinitions(io::Printer* printer) {
+void UEFileGenerator::GenerateInlineFunctionDefinitions(io::Printer* printer) {
   // An aside about inline functions in .proto.h mode:
   //
   // The PROTOBUF_INLINE_NOT_IN_HEADERS symbol controls conditionally
@@ -815,7 +815,7 @@ void MyFileGenerator::GenerateInlineFunctionDefinitions(io::Printer* printer) {
   //}
 }
 
-void MyFileGenerator::GenerateProto2NamespaceEnumSpecializations(
+void UEFileGenerator::GenerateProto2NamespaceEnumSpecializations(
     io::Printer* printer) {
   // Emit GetEnumDescriptor specializations into google::protobuf namespace:
   if (HasEnumDefinitions(file_)) {

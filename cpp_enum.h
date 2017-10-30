@@ -103,7 +103,7 @@ class EnumGenerator {
 
   int index_in_metadata_;
 
-  friend class MyFileGenerator;
+  friend class UEFileGenerator;
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(EnumGenerator);
 };
 

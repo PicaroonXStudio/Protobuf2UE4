@@ -62,22 +62,22 @@ namespace google {
 					}
 
 					// -----------------------------------------------------------------
-					string basename = MyStripProto(file->name());
+					string uebasename = MyStripProto(file->name());
 
-					MyFileGenerator file_generator(file, file_options);
+					UEFileGenerator uefile_generator(file, file_options);
 
-					basename.append("_UE");
+					uebasename.append("_UE");
 					{
 						google::protobuf::scoped_ptr<io::ZeroCopyOutputStream> output(
-							generator_context->Open(basename + ".h"));
+							generator_context->Open(uebasename + ".h"));
 						GeneratedCodeInfo annotations;
 						io::AnnotationProtoCollector<GeneratedCodeInfo> annotation_collector(
 							&annotations);
-						string info_path = basename + ".h.meta";
+						string info_path = uebasename + ".h.meta";
 						io::Printer printer(output.get(), '$', file_options.annotate_headers
 							? &annotation_collector
 							: NULL);
-						file_generator.GenerateHeader(
+						uefile_generator.GenerateHeader(
 							&printer, file_options.annotate_headers ? info_path : "");
 						if (file_options.annotate_headers) {
 							google::protobuf::scoped_ptr<io::ZeroCopyOutputStream> info_output(generator_context->Open(info_path));
@@ -88,11 +88,10 @@ namespace google {
 					// Generate cc file.
 					{
 						google::protobuf::scoped_ptr<io::ZeroCopyOutputStream> output(
-							generator_context->Open(basename + ".cpp"));
+							generator_context->Open(uebasename + ".cpp"));
 						io::Printer printer(output.get(), '$');
-						file_generator.GenerateSource(&printer);
+						uefile_generator.GenerateSource(&printer);
 					}
-
 					return true;
 				}
 

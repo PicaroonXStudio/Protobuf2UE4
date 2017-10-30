@@ -31,11 +31,11 @@ class EnumGenerator;           // enum.h
 //class ServiceGenerator;        // service.h
 //class ExtensionGenerator;      // extension.h
 
-class MyFileGenerator {
+class UEFileGenerator {
  public:
   // See generator.cc for the meaning of dllexport_decl.
-  MyFileGenerator(const FileDescriptor* file, const Options& options);
-  ~MyFileGenerator();
+  UEFileGenerator(const FileDescriptor* file, const Options& options);
+  ~UEFileGenerator();
 
   // info_path, if non-empty, should be the path (relative to printer's output)
   // to the metadata file describing this proto header.
@@ -132,7 +132,7 @@ class MyFileGenerator {
   // E.g. if the package is foo.bar, package_parts_ is {"foo", "bar"}.
   std::vector<string> package_parts_;
 
-  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(MyFileGenerator);
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(UEFileGenerator);
 };
 
 }  // namespace cpp

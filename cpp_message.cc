@@ -493,7 +493,7 @@ void UEMessageGenerator::GenerateClassMethods(io::Printer* printer) {
 
 		const vector<string> words = split(className, "_");
 
-		if (words.size() != 2)
+		if (words.size() < 2)
 		{
 			return;
 		}
