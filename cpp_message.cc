@@ -504,7 +504,7 @@ void UEMessageGenerator::GenerateClassMethods(io::Printer* printer) {
 		printer->Print(
 			"void U$classname$::Pack() {\n"
 			"mProtocolModule = (uint8)EProtocolModule::$module$;\n"
-			"mSpecificProtocol = (uint8)EUserProtocol::$protocol$;\n"
+			"mSpecificProtocol = (uint8)E$module$Protocol::$protocol$;\n"
 			"Dolphin::Protocol::$classname$ pbMessage;\n",
 			"classname", classname_,
 			"module", module,
