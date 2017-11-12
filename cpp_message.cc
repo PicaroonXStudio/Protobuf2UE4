@@ -172,9 +172,9 @@ void UEMessageGenerator::ToPBMessage_Normal(io::Printer* printer, const FieldDes
 	{
 	case FieldDescriptor::CPPTYPE_MESSAGE:
 		printer->Print(
-			"$field_type$ element;\n"
-			"$field_name$.ToPB(element);\n"
-			"pbMessage.set_allocated_$lowercase_name$(&element);\n"
+			"$field_type$* element = new $field_type$;\n"
+			"$field_name$.ToPB(*element);\n"
+			"pbMessage.set_allocated_$lowercase_name$(element);\n"
 			, "field_name", FieldName(field)
 			, "field_type", ClassName(field->message_type(), false)
 			, "lowercase_name", field->lowercase_name());
