@@ -528,7 +528,7 @@ void UEMessageGenerator::GenerateClassMethods(io::Printer* printer) {
 			"Dolphin::Protocol::AllResponse response;\n"
 			"response.ParseFromArray(message->Buffer, message->BufferSize);\n"
 			"responseData.state = response.state();\n"
-			"responseData.msg = FString(response.msg().c_str());\n"
+			"responseData.msg = UTF8_TO_TCHAR(response.msg().c_str());\n"
 			"Dolphin::Protocol::$classname$ pbMessage;\n"
 			"size_t len = response.result().length();\n"
 			"pbMessage.ParseFromArray(response.result().c_str(), len);\n\n",
