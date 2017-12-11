@@ -324,10 +324,9 @@ void UEMessageGenerator::FromPBMessage_Normal(io::Printer* printer, const FieldD
 
 	case FieldDescriptor::CPPTYPE_STRING:
 		printer->Print(
-			"$field_name$ = $field_type$(pbMessage.$lowercase_name$().c_str());\n"
+			"$field_name$ = UTF8_TO_TCHAR(pbMessage.$lowercase_name$().c_str());\n"
 			, "field_name", FieldName(field)
-			, "lowercase_name", field->lowercase_name()
-			, "field_type", PrimitiveTypeName(field->cpp_type()));
+			, "lowercase_name", field->lowercase_name());
 		break;
 	case FieldDescriptor::CPPTYPE_INT32:
 	case FieldDescriptor::CPPTYPE_BOOL:
