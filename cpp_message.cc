@@ -103,7 +103,7 @@ void UEMessageGenerator::GenerateClassDefinition(io::Printer* printer) {
 	vars["full_name"] = descriptor_->full_name();
 	vars["field_count"] = SimpleItoa(descriptor_->field_count());
 	vars["oneof_decl_count"] = SimpleItoa(descriptor_->oneof_decl_count());
-	vars["dllexport"] = "CLOUD_API";
+	vars["dllexport"] = "ZEN_API";
 
 	if (ends_with(classname_, "Data"))
 	{
@@ -360,7 +360,7 @@ void UEMessageGenerator::FromPBMessage_Repeated(io::Printer* printer, const Fiel
 		break;
 	case FieldDescriptor::CPPTYPE_STRING:
 		printer->Print(
-			"$field_type$ _$field_type$ = $field_type$(element.c_str());\n"
+			"$field_type$ _$field_type$ = UTF8_TO_TCHAR(element.c_str());\n"
 			"$field_name$.Add(_$field_type$);\n"
 			, "field_name", FieldName(field)
 			, "lowercase_name", field->lowercase_name()
