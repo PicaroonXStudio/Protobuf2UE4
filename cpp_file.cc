@@ -794,6 +794,10 @@ void UEFileGenerator::GenerateInlineFunctionDefinitions(io::Printer* printer) {
   //     unconditionally remain in the header. These are emitted by
   //     GenerateDependentInlineMethods, even though they are not actually
   //     dependent.
+	printer->Print(
+		"#ifdef PROTOBUF_INLINE_NOT_IN_HEADERS\n"
+		"  #define  PROTOBUF_INLINE_NOT_IN_HEADERS 0\n"
+		"#endif  // __GNUC__\n");
 
   printer->Print("#if !PROTOBUF_INLINE_NOT_IN_HEADERS\n");
   // TODO(gerbens) remove pragmas when gcc is no longer used. Current version
