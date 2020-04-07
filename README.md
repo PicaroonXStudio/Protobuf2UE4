@@ -2,4 +2,4 @@ Base on Protobuf [3.4.0](https://codeload.github.com/protocolbuffers/protobuf/ta
 
 Use for  UE4 (4.22-4.24) support .
 
-(Smaple)[https://github.com/PicaroonXStudio/ProtoFile]
+[Sample](https://github.com/PicaroonXStudio/ProtoFile)
