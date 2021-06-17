@@ -662,10 +662,10 @@ void UEFileGenerator::GenerateTopHeaderGuard(io::Printer* printer,
 	}
 
 	printer->Print(
-		"#include \"DolphinProtocol.h\"\n"
 		"#include \"$filename_identifier$\"\n\n"
-		"using namespace Dolphin::Protocol;\n\n",
+		"using namespace  $pakagename$;\n\n",
 		"filename", file_->name(),
+		"pakagename",file_->package(),
 		"filename_identifier", filename_identifier);
 	printer->Print("\n");
 }

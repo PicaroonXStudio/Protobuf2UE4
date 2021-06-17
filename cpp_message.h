@@ -63,6 +63,7 @@ public:
 	void Flatten(std::vector<UEMessageGenerator*>* list);
 	const Descriptor* descriptor_;
 	string classname_;
+	string packagename_;
 	Options options_;
 	FieldGeneratorMap field_generators_;
 	// optimized_order_ is the order we layout the message's fields in the class.

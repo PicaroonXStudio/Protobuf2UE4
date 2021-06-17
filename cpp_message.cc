@@ -28,6 +28,7 @@
 UEMessageGenerator::UEMessageGenerator(const Descriptor* descriptor, const Options& options, SCCAnalyzer* scc_analyzer) :
 	descriptor_(descriptor),
 	classname_(ClassName(descriptor, false)),
+    packagename_(descriptor->file()->package()),
 	options_(options),
 	field_generators_(descriptor, options),
 	max_has_bit_index_(0),
@@ -121,14 +122,15 @@ void UEMessageGenerator::GenerateClassDefinition(io::Printer* printer) {
 	}
 	else
 	{
-		if (ends_with(classname_, "Request"))
+		if (ends_with(classname_, "Req"))
 		{
-			vars["superclass"] = "UDolphinRequest";
+			vars["superclass"] = "URequest";
 			vars["append"] = "void Pack() override;";
+
 		}
-		else if (ends_with(classname_, "Response"))
+		else if (ends_with(classname_, "Resp"))
 		{
-			vars["superclass"] = "UDolphinResponse";
+			vars["superclass"] = "UResponse";
 			vars["append"] = "void Unpack(OriginalMessage *message) override;";
 		}
 		else
@@ -463,7 +465,7 @@ void UEMessageGenerator::Flatten(std::vector<UEMessageGenerator*>* list) {
 
 void UEMessageGenerator::GenerateClassMethods(io::Printer* printer) {
 
-	if (ends_with(classname_, "Data"))
+	if (ends_with(classname_, "Data") || ends_with(classname_, "Req")|| ends_with(classname_, "Req"))
 	{
 		printer->Print(
 			"void F$classname$::FromPB(const $classname$& pbMessage) {\n",
@@ -481,14 +483,11 @@ void UEMessageGenerator::GenerateClassMethods(io::Printer* printer) {
 
 		printer->Print("}\n\n");
 	}
-	else if (ends_with(classname_, "Request"))
+	else if (ends_with(classname_, "Req"))
 	{
 		//TODO 动态加载 模块和方法
 		string className = classname_;
-		className.replace(className.end() - 7, className.end(), "");
-
-		string module;
-		string protocol;
+		className.replace(className.end() - 3, className.end(), "");
 
 		const vector<string> words = split(className, "_");
 
@@ -497,24 +496,19 @@ void UEMessageGenerator::GenerateClassMethods(io::Printer* printer) {
 			return;
 		}
 
-		module = words.at(0);
-		protocol = words.at(1);
-
+		
 		printer->Print(
 			"void U$classname$::Pack() {\n"
-			"mProtocolModule = (uint8)EProtocolModule::$module$;\n"
-			"mSpecificProtocol = (uint8)E$module$Protocol::$protocol$;\n"
-			"Dolphin::Protocol::$classname$ pbMessage;\n",
+			"$package$::$classname$ pbMessage;\n",
 			"classname", classname_,
-			"module", module,
-			"protocol", protocol
+			"package",packagename_
 		);
 
 		ToPBMessage(printer);
 
 		printer->Print(
 			"mMessage = &pbMessage;\n"
-			"UDolphinRequest::Pack();\n"
+			"URequest::Pack();\n"
 			"}\n"
 			"\n",
 			"classname", classname_);
