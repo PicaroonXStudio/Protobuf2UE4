@@ -125,7 +125,7 @@ void UEMessageGenerator::GenerateClassDefinition(io::Printer* printer) {
 		if (ends_with(classname_, "Req"))
 		{
 			vars["superclass"] = "URequest";
-			vars["append"] = "void Pack() override;";
+			vars["append"] = "virtual void Pack() override;\nvirtual CMD GetCmd() override;";
 
 		}
 		else if (ends_with(classname_, "Resp"))
@@ -140,7 +140,7 @@ void UEMessageGenerator::GenerateClassDefinition(io::Printer* printer) {
 
 		printer->Print(vars,
 			"UCLASS(Blueprintable)\n"
-			"class $dllexport$ U$classname$ : public $superclass$ "
+			"class U$classname$ : public $superclass$ "
 			"{\n"
 			"GENERATED_BODY()\n");
 
@@ -465,7 +465,7 @@ void UEMessageGenerator::Flatten(std::vector<UEMessageGenerator*>* list) {
 
 void UEMessageGenerator::GenerateClassMethods(io::Printer* printer) {
 
-	if (ends_with(classname_, "Data") || ends_with(classname_, "Req")|| ends_with(classname_, "Req"))
+	if (ends_with(classname_, "Data") )
 	{
 		printer->Print(
 			"void F$classname$::FromPB(const $classname$& pbMessage) {\n",
@@ -488,20 +488,13 @@ void UEMessageGenerator::GenerateClassMethods(io::Printer* printer) {
 		//TODO 动态加载 模块和方法
 		string className = classname_;
 		className.replace(className.end() - 3, className.end(), "");
-
-		const vector<string> words = split(className, "_");
-
-		if (words.size() < 2)
-		{
-			return;
-		}
-
+		string fileName = descriptor_->file()->name();
+		fileName.replace(fileName.end() - 6, fileName.end(), "");
 		
 		printer->Print(
 			"void U$classname$::Pack() {\n"
-			"$package$::$classname$ pbMessage;\n",
-			"classname", classname_,
-			"package",packagename_
+			"$classname$ pbMessage;\n",
+			"classname", classname_
 		);
 
 		ToPBMessage(printer);
@@ -512,19 +505,23 @@ void UEMessageGenerator::GenerateClassMethods(io::Printer* printer) {
 			"}\n"
 			"\n",
 			"classname", classname_);
+		
+		printer->Print(
+			"CMD U$classname$::GetCmd()\n"
+			"{\n"
+			"return NO_$uppercase_filename$_$uppercase_classname$;\n"
+			"}\n",
+			"classname", classname_,
+			"uppercase_filename",ToUpper(fileName),
+			"uppercase_classname",ToUpper(className)
+		);
 	}
-	else if (ends_with(classname_, "Response"))
+	else if (ends_with(classname_, "Resp"))
 	{
 		printer->Print(
 			"void U$classname$::Unpack(OriginalMessage *message) {\n"
-			"protocolNo = (uint8)message->ProtocolModule << 8 | message->SpecificProtocol;\n"
-			"Dolphin::Protocol::AllResponse response;\n"
-			"response.ParseFromArray(message->Buffer, message->BufferSize);\n"
-			"responseData.state = response.state();\n"
-			"responseData.msg = UTF8_TO_TCHAR(response.msg().c_str());\n"
-			"Dolphin::Protocol::$classname$ pbMessage;\n"
-			"size_t len = response.result().length();\n"
-			"pbMessage.ParseFromArray(response.result().c_str(), len);\n\n",
+			"$classname$ pbMessage;\n"
+			"pbMessage.ParseFromArray(message->Buffer, message->BufferSize);\n\n",
 			"classname", classname_);
 
 		FromPBMessage(printer);
