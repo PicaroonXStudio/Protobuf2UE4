@@ -68,7 +68,10 @@ class EnumGenerator {
   // be used to associate the descriptor with the code generated for it.
   void FillForwardDeclaration(
       std::map<string, const EnumDescriptor*>* enum_names);
-
+  // Generate header code defining the enum.  This code should be placed
+  // within the enum's package namespace, but NOT within any class, even for
+  // nested enums.
+  void GenerateDefinitionHead(io::Printer* printer);
   // Generate header code defining the enum.  This code should be placed
   // within the enum's package namespace, but NOT within any class, even for
   // nested enums.
@@ -102,7 +105,7 @@ class EnumGenerator {
   const bool generate_array_size_;
 
   int index_in_metadata_;
-
+  std::map<string, string> filenames;
   friend class UEFileGenerator;
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(EnumGenerator);
 };

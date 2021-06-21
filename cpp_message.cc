@@ -131,7 +131,7 @@ void UEMessageGenerator::GenerateClassDefinition(io::Printer* printer) {
 		else if (ends_with(classname_, "Resp"))
 		{
 			vars["superclass"] = "UResponse";
-			vars["append"] = "void Unpack(OriginalMessage *message) override;";
+			vars["append"] = "void Unpack(const std::string& data) override;";
 		}
 		else
 		{
@@ -188,6 +188,12 @@ void UEMessageGenerator::ToPBMessage_Normal(io::Printer* printer, const FieldDes
 			, "lowercase_name", field->lowercase_name());
 		break;
 	case FieldDescriptor::CPPTYPE_INT32:
+	case FieldDescriptor::CPPTYPE_INT64:
+	case FieldDescriptor::CPPTYPE_UINT64:
+	case FieldDescriptor::CPPTYPE_UINT32:
+	case FieldDescriptor::CPPTYPE_FLOAT:
+	case FieldDescriptor::CPPTYPE_ENUM:
+	case FieldDescriptor::CPPTYPE_DOUBLE:
 	case FieldDescriptor::CPPTYPE_BOOL:
 		printer->Print(
 			"pbMessage.set_$lowercase_name$($field_name$);\n"
@@ -222,6 +228,11 @@ void UEMessageGenerator::ToPBMessage_Repeated(io::Printer* printer, const FieldD
 			, "lowercase_name", field->lowercase_name());
 		break;
 	case FieldDescriptor::CPPTYPE_INT32:
+	case FieldDescriptor::CPPTYPE_INT64:
+	case FieldDescriptor::CPPTYPE_UINT64:
+	case FieldDescriptor::CPPTYPE_UINT32:
+	case FieldDescriptor::CPPTYPE_FLOAT:
+	case FieldDescriptor::CPPTYPE_DOUBLE:
 	case FieldDescriptor::CPPTYPE_BOOL:
 		printer->Print(
 			"for (auto element : $field_name$) {\n"
@@ -331,6 +342,11 @@ void UEMessageGenerator::FromPBMessage_Normal(io::Printer* printer, const FieldD
 			, "lowercase_name", field->lowercase_name());
 		break;
 	case FieldDescriptor::CPPTYPE_INT32:
+	case FieldDescriptor::CPPTYPE_INT64:
+	case FieldDescriptor::CPPTYPE_UINT64:
+	case FieldDescriptor::CPPTYPE_UINT32:
+	case FieldDescriptor::CPPTYPE_FLOAT:
+	case FieldDescriptor::CPPTYPE_DOUBLE:
 	case FieldDescriptor::CPPTYPE_BOOL:
 		printer->Print(
 			"$field_name$ = pbMessage.$lowercase_name$();\n"
@@ -369,6 +385,11 @@ void UEMessageGenerator::FromPBMessage_Repeated(io::Printer* printer, const Fiel
 			, "field_type", PrimitiveTypeName(field->cpp_type()));
 		break;
 	case FieldDescriptor::CPPTYPE_INT32:
+	case FieldDescriptor::CPPTYPE_INT64:
+	case FieldDescriptor::CPPTYPE_UINT64:
+	case FieldDescriptor::CPPTYPE_UINT32:
+	case FieldDescriptor::CPPTYPE_FLOAT:
+	case FieldDescriptor::CPPTYPE_DOUBLE:
 	case FieldDescriptor::CPPTYPE_BOOL:
 		printer->Print(
 			"$field_name$.Add(element);\n"
@@ -424,6 +445,36 @@ void UEMessageGenerator::FromPBMessage_MapPair(io::Printer* printer, const Field
 	case FieldDescriptor::CPPTYPE_INT32:
 		printer->Print(
 			"int32 $field_name$ = element.$field_part$;\n"
+			, "field_name", FieldName(field),
+			"field_part", part);
+		break;
+	case FieldDescriptor::CPPTYPE_INT64:
+		printer->Print(
+			"int64 $field_name$ = element.$field_part$;\n"
+			, "field_name", FieldName(field),
+			"field_part", part);
+		break;
+	case FieldDescriptor::CPPTYPE_FLOAT:
+		printer->Print(
+			"float $field_name$ = element.$field_part$;\n"
+			, "field_name", FieldName(field),
+			"field_part", part);
+		break;
+	case FieldDescriptor::CPPTYPE_DOUBLE:
+		printer->Print(
+			"double $field_name$ = element.$field_part$;\n"
+			, "field_name", FieldName(field),
+			"field_part", part);
+		break;
+	case FieldDescriptor::CPPTYPE_UINT32:
+		printer->Print(
+			"uint32 $field_name$ = element.$field_part$;\n"
+			, "field_name", FieldName(field),
+			"field_part", part);
+		break;
+	case FieldDescriptor::CPPTYPE_UINT64:
+		printer->Print(
+			"uint64 $field_name$ = element.$field_part$;\n"
 			, "field_name", FieldName(field),
 			"field_part", part);
 		break;
@@ -490,7 +541,7 @@ void UEMessageGenerator::GenerateClassMethods(io::Printer* printer) {
 		className.replace(className.end() - 3, className.end(), "");
 		string fileName = descriptor_->file()->name();
 		fileName.replace(fileName.end() - 6, fileName.end(), "");
-		
+		fileName.replace(0,4,"");
 		printer->Print(
 			"void U$classname$::Pack() {\n"
 			"$classname$ pbMessage;\n",
@@ -519,9 +570,9 @@ void UEMessageGenerator::GenerateClassMethods(io::Printer* printer) {
 	else if (ends_with(classname_, "Resp"))
 	{
 		printer->Print(
-			"void U$classname$::Unpack(OriginalMessage *message) {\n"
+			"void U$classname$::Unpack(const std::string& data) {\n"
 			"$classname$ pbMessage;\n"
-			"pbMessage.ParseFromArray(message->Buffer, message->BufferSize);\n\n",
+			"pbMessage.ParseFromString(data);\n\n",
 			"classname", classname_);
 
 		FromPBMessage(printer);
