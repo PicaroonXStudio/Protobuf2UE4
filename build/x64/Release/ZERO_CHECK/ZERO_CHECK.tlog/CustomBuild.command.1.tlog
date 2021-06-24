@@ -1,0 +1,10 @@
+^D:\UE4_PROJECTS\PROTO\PROTOBUF2UE4OLD\BUILD\CMAKEFILES\462DC62735249B27626D0A46748D1D70\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/UE4_Projects/Proto/Protobuf2UE4OLD -BD:/UE4_Projects/Proto/Protobuf2UE4OLD/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/UE4_Projects/Proto/Protobuf2UE4OLD/build/protoc-gen-ue4.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

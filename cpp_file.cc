@@ -14,7 +14,7 @@
 #include "cpp_service.h"
 #include "cpp_extension.h"
 #include "cpp_message.h"
-#include "cpp_field.h">
+#include "cpp_field.h"
 #include "cpp_helpers.h"
 #include "strutil.h"
 
@@ -127,8 +127,8 @@ namespace google
                 {
                     string header =
                         MyStripProto(file_->name()) + (options_.proto_h ? ".proto.h" : "_UE.generated.h");
-                    
-               
+
+
                     GenerateTopHeaderGuard(printer, header);
 
                     GenerateEnumDefinitions(printer);
@@ -692,26 +692,29 @@ namespace google
                         "// source: $filename$\n"
                         "\n"
                         "#pragma once\n"
-                        "#include \"Protocol.h\"\n"
+                        "#include \"Project_X/Utility/APIServer/Public/APIProtocol.h\"\n"
                         "#include \"$filename_clean$.pb.h\"\n",
                         "filename", file_->name(),
                         "filename_identifier", filename_identifier,
                         "filename_clean", FileName);
-                    
+
                     // Generate enum definitions.
                     for (int i = 0; i < enum_generators_.size(); i++)
                     {
                         enum_generators_[i]->GenerateDefinitionHead(printer);
                     }
-                    
+
                     for (int i = 0; i < file_->dependency_count(); i++)
                     {
                         const FileDescriptor* dep = file_->dependency(i);
                         const char* extension = "_UE.h";
-                        string dependency = MyStripProto(dep->name()) + extension;
-                        printer->Print(
-                            "#include \"$dependency$\"\n",
-                            "dependency", dependency);
+                        if (starts_with(dep->name(), "enum_"))
+                        {
+                            string dependency = MyStripProto(dep->name()) + extension;
+                            printer->Print(
+                                "#include \"$dependency$\"\n",
+                                "dependency", dependency);
+                        }
                     }
                     if (file_->package().length() > 0)
                     {

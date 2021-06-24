@@ -83,7 +83,7 @@ namespace google
                         }
                         if(foundRep)
                         {
-                            printer->Print(vars, "#include \"APIServer/GeneratedAPI/$repname$_UE.h\"\n");    
+                            printer->Print(vars, "#include \"Project_X/Utility/APIServer/Generated/$repname$_UE.h\"\n");    
                         }
                         
                     }
@@ -101,8 +101,10 @@ namespace google
                     // empty string.
                     vars["{"] = "";
                     vars["}"] = "";
-
-                    printer->Print("TMap<CMD, TSubclassOf<UResponse>> ResponseMap = \n{\n");
+                    printer->Print("UCLASS()\n"
+                        "class PROJECT_X_API UResponseMap : public UObject\n"
+                        "{\n GENERATED_BODY() \n public:\n");
+                    printer->Print("TMap<int, TSubclassOf<UResponse>> ResponseMap = \n{\n");
                     printer->Annotate("classname", descriptor_);
                    
                     for (int i = 0; i < descriptor_->value_count(); i++)
@@ -126,11 +128,20 @@ namespace google
                         }
                         if(FoundRef)
                         {
-                            printer->Print(vars, "{$name$, U$repname$Resp::StaticClass() }");
+                            if(ends_with(EnumValueName(descriptor_->value(i)), "_PUSH"))
+                            {
+                                printer->Print(vars, "{$name$, U$repname$Push::StaticClass() }");    
+                            }else
+                            {
+                                printer->Print(vars, "{$name$, U$repname$Resp::StaticClass() }");
+                            }
+                            
                             printer->Print(",");
                             printer->Print(vars, " //$nameoption$");    
                         }
                     }
+                    printer->Print("};\n");
+                    
                     printer->Print("};\n");
                 }
 

@@ -1,0 +1,322 @@
+﻿  Building Custom Rule D:/UE4_Projects/Proto/Protobuf2UE4OLD/CMakeLists.txt
+  main.cpp
+  cpp_enum.cc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(755,1): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(728): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::emplace_back<google::protobuf::compiler::cpp::SCC*>(google::protobuf::compiler::cpp::SCC *&&)”的引用
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(727): message : 在编译 类 模板 成员函数“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”时
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(368): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(365): message : 查看对正在编译的 类 模板 实例化“std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>”的引用
+  cpp_enum_field.cc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(755,1): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(728): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::emplace_back<google::protobuf::compiler::cpp::SCC*>(google::protobuf::compiler::cpp::SCC *&&)”的引用
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(727): message : 在编译 类 模板 成员函数“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”时
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(368): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(365): message : 查看对正在编译的 类 模板 实例化“std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>”的引用
+  cpp_extension.cc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(755,1): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(728): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::emplace_back<google::protobuf::compiler::cpp::SCC*>(google::protobuf::compiler::cpp::SCC *&&)”的引用
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(727): message : 在编译 类 模板 成员函数“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”时
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(368): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(365): message : 查看对正在编译的 类 模板 实例化“std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>”的引用
+  cpp_field.cc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(755,1): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(728): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::emplace_back<google::protobuf::compiler::cpp::SCC*>(google::protobuf::compiler::cpp::SCC *&&)”的引用
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(727): message : 在编译 类 模板 成员函数“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”时
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(368): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(365): message : 查看对正在编译的 类 模板 实例化“std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>”的引用
+  cpp_file.cc
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_file.cc(18,10): warning C4067: 预处理器指令后有意外标记 - 应输入换行符
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(755,1): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::EnumGenerator **std::vector<google::protobuf::compiler::cpp::EnumGenerator *,std::allocator<google::protobuf::compiler::cpp::EnumGenerator *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::EnumGenerator **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::EnumGenerator *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::EnumGenerator **std::vector<google::protobuf::compiler::cpp::EnumGenerator *,std::allocator<google::protobuf::compiler::cpp::EnumGenerator *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::EnumGenerator **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::EnumGenerator *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(728): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::EnumGenerator *,std::allocator<google::protobuf::compiler::cpp::EnumGenerator *>>::emplace_back<google::protobuf::compiler::cpp::EnumGenerator*>(google::protobuf::compiler::cpp::EnumGenerator *&&)”的引用
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(727): message : 在编译 类 模板 成员函数“void std::vector<google::protobuf::compiler::cpp::EnumGenerator *,std::allocator<google::protobuf::compiler::cpp::EnumGenerator *>>::push_back(_Ty &&)”时
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::EnumGenerator *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_file.cc(86): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::EnumGenerator *,std::allocator<google::protobuf::compiler::cpp::EnumGenerator *>>::push_back(_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::EnumGenerator *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_file.h(119): message : 查看对正在编译的 类 模板 实例化“std::vector<google::protobuf::compiler::cpp::EnumGenerator *,std::allocator<google::protobuf::compiler::cpp::EnumGenerator *>>”的引用
+  cpp_generator.cc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(755,1): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(728): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::emplace_back<google::protobuf::compiler::cpp::SCC*>(google::protobuf::compiler::cpp::SCC *&&)”的引用
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(727): message : 在编译 类 模板 成员函数“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”时
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(368): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(365): message : 查看对正在编译的 类 模板 实例化“std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>”的引用
+  cpp_helpers.cc
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.cc(727,74): warning C4273: “google::protobuf::compiler::cpp::SCCAnalyzer::DFS”: dll 链接不一致
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(373,12): message : 参见“DFS”的前一个定义
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.cc(771,65): warning C4273: “google::protobuf::compiler::cpp::SCCAnalyzer::GetSCCAnalysis”: dll 链接不一致
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(346,19): message : 参见“GetSCCAnalysis”的前一个定义
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(755,1): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(728): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::emplace_back<google::protobuf::compiler::cpp::SCC*>(google::protobuf::compiler::cpp::SCC *&&)”的引用
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(727): message : 在编译 类 模板 成员函数“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”时
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(368): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(365): message : 查看对正在编译的 类 模板 实例化“std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>”的引用
+  cpp_map_field.cc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(755,1): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(728): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::emplace_back<google::protobuf::compiler::cpp::SCC*>(google::protobuf::compiler::cpp::SCC *&&)”的引用
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(727): message : 在编译 类 模板 成员函数“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”时
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(368): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(365): message : 查看对正在编译的 类 模板 实例化“std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>”的引用
+  cpp_message.cc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(755,1): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“UEMessageGenerator **std::vector<UEMessageGenerator *,std::allocator<UEMessageGenerator *>>::_Emplace_reallocate<_Ty>(UEMessageGenerator **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=UEMessageGenerator *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“UEMessageGenerator **std::vector<UEMessageGenerator *,std::allocator<UEMessageGenerator *>>::_Emplace_reallocate<_Ty>(UEMessageGenerator **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=UEMessageGenerator *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(728): message : 查看对正在编译的函数 模板 实例化“void std::vector<UEMessageGenerator *,std::allocator<UEMessageGenerator *>>::emplace_back<UEMessageGenerator*>(UEMessageGenerator *&&)”的引用
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(727): message : 在编译 类 模板 成员函数“void std::vector<UEMessageGenerator *,std::allocator<UEMessageGenerator *>>::push_back(_Ty &&)”时
+          with
+          [
+              _Ty=UEMessageGenerator *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_message.cc(461): message : 查看对正在编译的函数 模板 实例化“void std::vector<UEMessageGenerator *,std::allocator<UEMessageGenerator *>>::push_back(_Ty &&)”的引用
+          with
+          [
+              _Ty=UEMessageGenerator *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_message.cc(460): message : 查看对正在编译的 类 模板 实例化“std::vector<UEMessageGenerator *,std::allocator<UEMessageGenerator *>>”的引用
+  cpp_message_field.cc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(755,1): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(728): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::emplace_back<google::protobuf::compiler::cpp::SCC*>(google::protobuf::compiler::cpp::SCC *&&)”的引用
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(727): message : 在编译 类 模板 成员函数“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”时
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(368): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(365): message : 查看对正在编译的 类 模板 实例化“std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>”的引用
+  cpp_primitive_field.cc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(755,1): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(728): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::emplace_back<google::protobuf::compiler::cpp::SCC*>(google::protobuf::compiler::cpp::SCC *&&)”的引用
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(727): message : 在编译 类 模板 成员函数“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”时
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(368): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(365): message : 查看对正在编译的 类 模板 实例化“std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>”的引用
+  cpp_service.cc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(755,1): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(728): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::emplace_back<google::protobuf::compiler::cpp::SCC*>(google::protobuf::compiler::cpp::SCC *&&)”的引用
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(727): message : 在编译 类 模板 成员函数“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”时
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(368): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(365): message : 查看对正在编译的 类 模板 实例化“std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>”的引用
+  cpp_string_field.cc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(755,1): warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(715): message : 查看对正在编译的函数 模板 实例化“google::protobuf::compiler::cpp::SCC **std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::_Emplace_reallocate<_Ty>(google::protobuf::compiler::cpp::SCC **const ,_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(728): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::emplace_back<google::protobuf::compiler::cpp::SCC*>(google::protobuf::compiler::cpp::SCC *&&)”的引用
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(727): message : 在编译 类 模板 成员函数“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”时
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(368): message : 查看对正在编译的函数 模板 实例化“void std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>::push_back(_Ty &&)”的引用
+          with
+          [
+              _Ty=google::protobuf::compiler::cpp::SCC *
+          ]
+D:\UE4_Projects\Proto\Protobuf2UE4OLD\cpp_helpers.h(365): message : 查看对正在编译的 类 模板 实例化“std::vector<google::protobuf::compiler::cpp::SCC *,std::allocator<google::protobuf::compiler::cpp::SCC *>>”的引用
+  正在生成代码...
+    正在创建库 D:/UE4_Projects/Proto/Protobuf2UE4OLD/build/Debug/protoc-gen-ue4.lib 和对象 D:/UE4_Projects/Proto/Protobuf2UE4OLD/build/Debug/protoc-gen-ue4.exp
+  protoc-gen-ue4.vcxproj -> D:\UE4_Projects\Proto\Protobuf2UE4OLD\build\Debug\protoc-gen-ue4.exe

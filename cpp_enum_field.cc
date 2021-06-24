@@ -69,7 +69,10 @@ EnumFieldGenerator::~EnumFieldGenerator() {}
 
 void EnumFieldGenerator::
 GeneratePrivateMembers(io::Printer* printer) const {
-  printer->Print(variables_, "int $name$_;\n");
+  printer->Print(variables_, 
+  "UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Example, Meta = (ExposeOnSpawn = true))\n"
+  "int $name$;\n\n");
+  //printer->Print(variables_, "int $name$_;\n");
 }
 
 void EnumFieldGenerator::

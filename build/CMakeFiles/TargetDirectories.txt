@@ -1,0 +1,3 @@
+D:/UE4_Projects/Proto/Protobuf2UE4OLD/build/CMakeFiles/protoc-gen-ue4.dir
+D:/UE4_Projects/Proto/Protobuf2UE4OLD/build/CMakeFiles/ALL_BUILD.dir
+D:/UE4_Projects/Proto/Protobuf2UE4OLD/build/CMakeFiles/ZERO_CHECK.dir
