@@ -121,34 +121,7 @@ void UEMessageGenerator::GenerateClassDefinition(io::Printer* printer)
     vars["oneof_decl_count"] = SimpleItoa(descriptor_->oneof_decl_count());
     vars["dllexport"] = "ZEN_API";
 
-    if (ends_with(classname_, "Data"))
-    {
-        printer->Print(vars,
-                       "USTRUCT(BlueprintType)\n"
-                       "struct F$classname$"
-                       "{\n"
-                       "GENERATED_USTRUCT_BODY()\n");
 
-        printer->Print(" public:\n");
-        printer->Indent();
-
-        printer->Print(vars, "void FromPB(const $classname$& pbMessage);\n");
-        printer->Print(vars, "void ToPB($classname$& pbMessage) const;\n");
-        printer->Print("\n");
-        // Emit some private and static members
-        for (int i = 0; i < optimized_order_.size(); ++i)
-        {
-            const FieldDescriptor* field = optimized_order_[i];
-            const FieldGenerator& generator = field_generators_.get(field);
-            generator.GenerateStaticMembers(printer);
-            generator.GeneratePrivateMembers(printer);
-        }
-
-        printer->Outdent();
-
-        printer->Print("};\n");
-    }
-    else
     {
         if (ends_with(classname_, "Req"))
         {
@@ -237,9 +210,32 @@ void UEMessageGenerator::GenerateClassDefinition(io::Printer* printer)
             // }
             printer->Print("};");
         }
+
         else
         {
-            return;
+            printer->Print(vars,
+                           "USTRUCT(BlueprintType)\n"
+                           "struct F$classname$"
+                           "{\n"
+                           "GENERATED_USTRUCT_BODY()\n");
+
+            printer->Print(" public:\n");
+            printer->Indent();
+
+            printer->Print(vars, "void FromPB(const $classname$& pbMessage);\n");
+            printer->Print(vars, "void ToPB($classname$& pbMessage) const;\n");
+            printer->Print("\n");
+            // Emit some private and static members
+            for (int i = 0; i < optimized_order_.size(); ++i)
+            {
+                const FieldDescriptor* field = optimized_order_[i];
+                const FieldGenerator& generator = field_generators_.get(field);
+                generator.GenerateStaticMembers(printer);
+                generator.GeneratePrivateMembers(printer);
+            }
+
+            printer->Outdent();
+            printer->Print("};\n");
         }
     }
 }
@@ -428,12 +424,17 @@ void UEMessageGenerator::FromPBMessage_Normal(io::Printer* printer, const FieldD
     case FieldDescriptor::CPPTYPE_FLOAT:
     case FieldDescriptor::CPPTYPE_DOUBLE:
     case FieldDescriptor::CPPTYPE_BOOL:
-    case FieldDescriptor::CPPTYPE_ENUM:
         printer->Print(
             "$field_name$ = pbMessage.$lowercase_name$();\n"
             , "field_name", FieldName(field)
             , "lowercase_name", field->lowercase_name());
         break;
+    case FieldDescriptor::CPPTYPE_ENUM:
+        printer->Print(
+            "$field_name$ = static_cast<E$EnumName$>(pbMessage.$lowercase_name$());\n"
+            , "field_name", FieldName(field)
+            , "lowercase_name", field->lowercase_name()
+            , "EnumName", ClassName(field->enum_type(), false));
     default:
         break;
     }
@@ -603,32 +604,21 @@ void UEMessageGenerator::Flatten(std::vector<UEMessageGenerator*>* list)
 
 void UEMessageGenerator::GenerateClassMethods(io::Printer* printer)
 {
-    if (ends_with(classname_, "Data"))
-    {
-        printer->Print(
-            "void F$classname$::FromPB(const $classname$& pbMessage) {\n",
-            "classname", classname_);
-        printer->Indent();
-        FromPBMessage(printer);
-        printer->Outdent();
-        printer->Print("}\n\n");
-
-        printer->Print(
-            "void F$classname$::ToPB($classname$& pbMessage) const {\n",
-            "classname", classname_);
-
-        ToPBMessage(printer);
-
-        printer->Print("}\n\n");
-    }
-    else if (ends_with(classname_, "Req"))
+    if (ends_with(classname_, "Req"))
     {
         //TODO 动态加载 模块和方法
         string className = classname_;
         className.replace(className.end() - 3, className.end(), "");
+
+
         string fileName = descriptor_->file()->name();
         fileName.replace(fileName.end() - 6, fileName.end(), "");
         fileName.replace(0, 4, "");
+
+        if (starts_with(ToUpper(className), ToUpper(fileName)))
+        {
+            className.replace(0, fileName.length(), "");
+        }
         printer->Print(
             "void U$classname$::Pack() {\n"
             "    $classname$ pbMessage;\n",
@@ -643,6 +633,7 @@ void UEMessageGenerator::GenerateClassMethods(io::Printer* printer)
             "}\n"
             "\n",
             "classname", classname_);
+
 
         printer->Print(
             "CMD U$classname$::GetCmd()\n"
@@ -694,5 +685,23 @@ void UEMessageGenerator::GenerateClassMethods(io::Printer* printer)
             "}\n"
             "\n",
             "classname", classname_);
+    }
+    else
+    {
+        printer->Print(
+            "void F$classname$::FromPB(const $classname$& pbMessage) {\n",
+            "classname", classname_);
+        printer->Indent();
+        FromPBMessage(printer);
+        printer->Outdent();
+        printer->Print("}\n\n");
+
+        printer->Print(
+            "void F$classname$::ToPB($classname$& pbMessage) const {\n",
+            "classname", classname_);
+
+        ToPBMessage(printer);
+
+        printer->Print("}\n\n");
     }
 }

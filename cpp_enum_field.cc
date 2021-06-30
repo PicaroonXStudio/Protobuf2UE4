@@ -51,6 +51,7 @@ void SetEnumVariables(const FieldDescriptor* descriptor,
   SetCommonFieldVariables(descriptor, variables, options);
   const EnumValueDescriptor* default_value = descriptor->default_value_enum();
   (*variables)["type"] = ClassName(descriptor->enum_type(), true);
+  (*variables)["type1"] = ClassName(descriptor->enum_type(), false);
   (*variables)["default"] = Int32ToString(default_value->number());
   (*variables)["full_name"] = descriptor->full_name();
 }
@@ -71,7 +72,7 @@ void EnumFieldGenerator::
 GeneratePrivateMembers(io::Printer* printer) const {
   printer->Print(variables_, 
   "UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Example, Meta = (ExposeOnSpawn = true))\n"
-  "int $name$;\n\n");
+  "E$type1$ $name$;\n\n");
   //printer->Print(variables_, "int $name$_;\n");
 }
 

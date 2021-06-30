@@ -65,15 +65,15 @@ namespace google
                         descriptor_->value(i)->GetSourceLocation(&Location);
                         string comment = Location.trailing_comments;
                         vector<string> splitResult = split(comment, ",", false);
-                        bool foundRep =false;
+                        bool foundRep = false;
                         for (string s : splitResult)
                         {
-                            s =StringReplace(s, " ","",true);
+                            s = StringReplace(s, " ", "", true);
                             if (starts_with(s, "file="))
                             {
                                 s = s.replace(0, 5, "");
-                                s = s.replace(s.length()-6, s.length(), "");
-                                if( filenames.count(s) == 0)
+                                s = s.replace(s.length() - 6, s.length(), "");
+                                if (filenames.count(s) == 0)
                                 {
                                     vars["repname"] = s;
                                     foundRep = true;
@@ -81,11 +81,10 @@ namespace google
                                 }
                             }
                         }
-                        if(foundRep)
+                        if (foundRep)
                         {
-                            printer->Print(vars, "#include \"Project_X/Utility/APIServer/Generated/$repname$_UE.h\"\n");    
+                            printer->Print(vars, "#include \"Project_X/Utility/APIServer/Generated/$repname$_UE.h\"\n");
                         }
-                        
                     }
                 }
 
@@ -93,56 +92,103 @@ namespace google
                 {
                     std::map<string, string> vars;
                     vars["classname"] = classname_;
-                    vars["short_name"] = descriptor_->name();
-                    vars["enumbase"] = options_.proto_h ? " : int" : "";
-                    // These variables are placeholders to pick out the beginning and ends of
-                    // identifiers for annotations (when doing so with existing variables would
-                    // be ambiguous or impossible). They should never be set to anything but the
-                    // empty string.
-                    vars["{"] = "";
-                    vars["}"] = "";
-                    printer->Print("UCLASS()\n"
-                        "class PROJECT_X_API UResponseMap : public UObject\n"
-                        "{\n GENERATED_BODY() \n public:\n");
-                    printer->Print("TMap<int, TSubclassOf<UResponse>> ResponseMap = \n{\n");
-                    printer->Annotate("classname", descriptor_);
-                   
-                    for (int i = 0; i < descriptor_->value_count(); i++)
+                    if (ends_with(classname_, "CMD"))
                     {
+                        //std::map<string, string> vars;
+                        vars["classname"] = classname_;
+                        vars["short_name"] = descriptor_->name();
+                        vars["enumbase"] = options_.proto_h ? " : int" : "";
+                        // These variables are placeholders to pick out the beginning and ends of
+                        // identifiers for annotations (when doing so with existing variables would
+                        // be ambiguous or impossible). They should never be set to anything but the
+                        // empty string.
+                        vars["{"] = "";
+                        vars["}"] = "";
+                        printer->Print("UCLASS()\n"
+                            "class PROJECT_X_API UResponseMap : public UObject\n"
+                            "{\n GENERATED_BODY() \n public:\n");
+                        printer->Print("TMap<int, TSubclassOf<UResponse>> ResponseMap = \n{\n");
+                        printer->Annotate("classname", descriptor_);
                         printer->Indent();
-                        vars["name"] = EnumValueName(descriptor_->value(i));
-                        SourceLocation Location;
-                        descriptor_->value(i)->GetSourceLocation(&Location);
-                        vars["nameoption"] = Location.trailing_comments;
-                        string comment = Location.trailing_comments;
-                        vector<string> splitResult = split(comment, ",", false);
-                        bool FoundRef = false;
-                        for (string s : splitResult)
+                        for (int i = 0; i < descriptor_->value_count(); i++)
                         {
-                            if (starts_with(s, "req="))
+                           
+                            vars["name"] = EnumValueName(descriptor_->value(i));
+                            SourceLocation Location;
+                            descriptor_->value(i)->GetSourceLocation(&Location);
+                            vars["nameoption"] = Location.trailing_comments;
+                            string comment = Location.trailing_comments;
+                            vector<string> splitResult = split(comment, ",", false);
+                            bool FoundRef = false;
+                            for (string s : splitResult)
                             {
-                                s = s.replace(0, 4, "");
-                                vars["repname"] = s;
-                                FoundRef = true;
+                                if (starts_with(s, "req="))
+                                {
+                                    s = s.replace(0, 4, "");
+                                    vars["repname"] = s;
+                                    FoundRef = true;
+                                }
+                            }
+                            if (FoundRef)
+                            {
+                                if (ends_with(EnumValueName(descriptor_->value(i)), "_PUSH"))
+                                {
+                                    printer->Print(vars, "{$name$, U$repname$Push::StaticClass() }");
+                                }
+                                else
+                                {
+                                    printer->Print(vars, "{$name$, U$repname$Resp::StaticClass() }");
+                                }
+
+                                printer->Print(",");
+                                printer->Print(vars, " //$nameoption$");
                             }
                         }
-                        if(FoundRef)
+                        printer->Outdent();
+                        printer->Print("};\n");
+
+                        for (int i = 0; i < descriptor_->value_count(); i++)
                         {
-                            if(ends_with(EnumValueName(descriptor_->value(i)), "_PUSH"))
-                            {
-                                printer->Print(vars, "{$name$, U$repname$Push::StaticClass() }");    
-                            }else
-                            {
-                                printer->Print(vars, "{$name$, U$repname$Resp::StaticClass() }");
-                            }
-                            
-                            printer->Print(",");
-                            printer->Print(vars, " //$nameoption$");    
+                            vars["name"] = ToUpper(EnumValueName(descriptor_->value(i)));
+                            // In C++, an value of -2147483648 gets interpreted as the negative of
+                            // 2147483648, and since 2147483648 can't fit in an integer, this produces a
+                            // compiler warning.  This works around that issue.
+                            vars["number"] = Int32ToString(descriptor_->value(i)->number());
+                            printer->Print(vars, "UPROPERTY(BlueprintReadOnly)\n");
+                            printer->Print(vars, " int E$name$ =$number$;\n");
                         }
+                        printer->Print("};\n");
                     }
-                    printer->Print("};\n");
-                    
-                    printer->Print("};\n");
+                    else
+                    {
+                        //std::map<string, string> vars;
+                        vars["classname"] = classname_;
+                        vars["short_name"] = descriptor_->name();
+                        vars["enumbase"] = options_.proto_h ? " : int" : "";
+
+                        // These variables are placeholders to pick out the beginning and ends of
+                        // identifiers for annotations (when doing so with existing variables would
+                        // be ambiguous or impossible). They should never be set to anything but the
+                        // empty string.
+                        vars["{"] = "";
+                        vars["}"] = "";
+                        printer->Print(vars,"UENUM(BlueprintType)\n"
+                            "enum class E$classname$ : uint8\n"
+                            "{\n ");
+                        printer->Annotate("classname", descriptor_);
+                        printer->Indent();
+                        for (int i = 0; i < descriptor_->value_count(); i++)
+                        {
+                            vars["name"] = ToUpper(EnumValueName(descriptor_->value(i)));
+                            vars["number"] = Int32ToString(descriptor_->value(i)->number());
+                            SourceLocation Location;
+                            descriptor_->value(i)->GetSourceLocation(&Location);
+                            vars["nameoption"] = Location.trailing_comments;
+                            printer->Print(vars, "$name$ = $number$,\n");
+                        }
+                        printer->Outdent();
+                        printer->Print("};\n\n");
+                    }
                 }
 
                 void EnumGenerator::

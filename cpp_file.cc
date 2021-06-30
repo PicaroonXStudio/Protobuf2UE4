@@ -128,7 +128,6 @@ namespace google
                     string header =
                         MyStripProto(file_->name()) + (options_.proto_h ? ".proto.h" : "_UE.generated.h");
 
-
                     GenerateTopHeaderGuard(printer, header);
 
                     GenerateEnumDefinitions(printer);
@@ -708,13 +707,13 @@ namespace google
                     {
                         const FileDescriptor* dep = file_->dependency(i);
                         const char* extension = "_UE.h";
-                        if (starts_with(dep->name(), "enum_"))
-                        {
+                        // if (!starts_with(dep->name(), "enum_"))
+                        // {
                             string dependency = MyStripProto(dep->name()) + extension;
                             printer->Print(
                                 "#include \"$dependency$\"\n",
                                 "dependency", dependency);
-                        }
+                        //}
                     }
                     if (file_->package().length() > 0)
                     {
